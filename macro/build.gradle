@@ -1,0 +1,8 @@
+dependencies {
+    // 自身业务特有依赖（如用户模块的持久层、服务层依赖）
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'ai.z.openapi:zai-sdk:0.3.3'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation("org.slf4j:slf4j-api")
+}

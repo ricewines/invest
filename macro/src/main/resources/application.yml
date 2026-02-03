@@ -1,0 +1,24 @@
+invest:
+  zhi-pu-ai:
+    model: glm-4.7-flash
+spring:
+  mail:
+    host: smtp.163.com
+  profiles:
+    active: chixuehui
+---
+server:
+  port: 6001
+spring:
+  config:
+    activate:
+      on-profile: chixuehui
+    import:
+      - file:${user.home}/IdeaProjects/ricewines/local-config/common-chixuehui.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: chixuehuidocker
+    import:
+      - file:/app/ricewines-deploy/common-chixuehuidocker.yml
