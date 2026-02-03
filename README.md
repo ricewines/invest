@@ -1,1 +1,49 @@
 # invest
+
+## 提交代码
+
+### Maco OS预先配置
+
+```shell
+INVEST_VERSION="0.1.0"
+JAVA_HOME="~/Library/Java/JavaVirtualMachines/openjdk-25/Contents/Home"
+$INVEST_VERSION
+$JAVA_HOME
+```
+
+### Windows 11预先配置
+
+```shell
+$$Env:INVEST_VERSION = "0.1.0"
+$$Env:INVEST_VERSION
+$$Env:JAVA_HOME = "C:\Users\PC\.jdks\openjdk-25.0.2"
+$$Env:JAVA_HOME
+```
+
+### 开始新的开发
+
+```shell
+./gradlew clean
+./gradlew versions:set --define newVersion=$Env:INVEST_VERSION
+./gradlew versions:commit
+```
+
+```shell
+git add .
+```
+
+```shell
+git commit -m "增加了投资比例的邮件发送功能 #1"
+```
+
+```shell
+git tag -a v$Env:INVEST_VERSION -m "发布版本$Env:INVEST_VERSION"
+```
+
+```shell
+git push origin v$Env:INVEST_VERSION
+```
+
+```shell
+git push origin dev_chixh
+```
