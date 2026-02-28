@@ -13,14 +13,14 @@ buildscript {
     }
     // 声明插件的Maven坐标（group:name:version）
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:3.5.10"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:3.5.11"
     }
 }
 
 // ########## 全局公共配置 ##########
 allprojects {
     group = 'io.github.ricewines'
-    version = '0.1.0'
+    version = '0.1.1'
     repositories {
         maven { url = 'https://maven.aliyun.com/repository/public/' }
         mavenLocal()
