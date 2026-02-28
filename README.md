@@ -14,7 +14,7 @@ $JAVA_HOME
 ### Windows 11预先配置
 
 ```shell
-$$Env:INVEST_VERSION = "0.1.0"
+$$Env:INVEST_VERSION = "0.1.1"
 $$Env:INVEST_VERSION
 $$Env:JAVA_HOME = "C:\Users\PC\.jdks\openjdk-25.0.2"
 $$Env:JAVA_HOME
@@ -33,7 +33,7 @@ git add .
 ```
 
 ```shell
-git commit -m "增加了投资比例的邮件发送功能 #1"
+git commit -m "升级 #2"
 ```
 
 ```shell
