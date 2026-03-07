@@ -14,7 +14,7 @@ $JAVA_HOME
 ### Windows 11预先配置
 
 ```shell
-$$Env:INVEST_VERSION = "0.1.1"
+$$Env:INVEST_VERSION = "0.1.2"
 $$Env:INVEST_VERSION
 $$Env:JAVA_HOME = "C:\Users\PC\.jdks\openjdk-25.0.2"
 $$Env:JAVA_HOME
@@ -24,8 +24,6 @@ $$Env:JAVA_HOME
 
 ```shell
 ./gradlew clean
-./gradlew versions:set --define newVersion=$Env:INVEST_VERSION
-./gradlew versions:commit
 ```
 
 ```shell
@@ -33,7 +31,7 @@ git add .
 ```
 
 ```shell
-git commit -m "升级 #2"
+git commit -m "制作流水线 #3"
 ```
 
 ```shell
