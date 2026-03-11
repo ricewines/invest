@@ -33,9 +33,11 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
-    - name: Build with Gradle
-      # 在运行 build 之前，先强制赋予执行权限
-      run: chmod +x gradlew && ./gradlew build
+    - name: Make gradlew executable
+      run: chmod +x gradlew
+
+    - name: Build
+      run: ./gradlew build
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
