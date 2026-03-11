@@ -14,7 +14,7 @@ $JAVA_HOME
 ### Windows 11预先配置
 
 ```shell
-$$Env:INVEST_VERSION = "0.1.2"
+$$Env:INVEST_VERSION = "0.1.3"
 $$Env:INVEST_VERSION
 $$Env:JAVA_HOME = "C:\Users\PC\.jdks\openjdk-25.0.2"
 $$Env:JAVA_HOME
@@ -31,7 +31,7 @@ git add .
 ```
 
 ```shell
-git commit -m "制作流水线 #3"
+git commit -m "分离gradlew处理 #4"
 ```
 
 ```shell
