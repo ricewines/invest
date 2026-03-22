@@ -8,7 +8,7 @@ spring:
     active: chixuehui
 ---
 server:
-  port: 6001
+  port: 5001
 spring:
   config:
     activate:
