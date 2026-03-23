@@ -2,7 +2,13 @@ package io.github.ricewines.sys.service.impl;
 
 import ai.z.openapi.ZhipuAiClient;
 import ai.z.openapi.service.model.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import freemarker.template.Configuration;
+import freemarker.template.TemplateException;
 import io.github.ricewines.sys.config.InvestConfig;
+import io.github.ricewines.sys.model.InvestmentStrategy;
 import io.github.ricewines.sys.service.InvestRatioService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -14,6 +20,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.util.FileCopyUtils;
 
 import java.io.IOException;
@@ -35,6 +42,10 @@ public class InvestRatioServiceImpl implements InvestRatioService {
     /// 投资配置
     private InvestConfig investConfig;
 
+    /// freemarker模板
+    private Configuration freemarkerConfiguration;
+    ///序列化工具
+    private ObjectMapper jacksonObjectMapper;
     /**
      * 加仓和调仓
      */
@@ -81,6 +92,20 @@ public class InvestRatioServiceImpl implements InvestRatioService {
             log.info("AI 回复: {}", reply);
             // TODO 邮件模板做得精美些
             String htmlContent = reply.getContent() + "";
+            InvestmentStrategy investmentStrategy;
+            try {
+                investmentStrategy = jacksonObjectMapper.readValue(reply.getContent() + "", InvestmentStrategy.class);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                String markdownContent = FreeMarkerTemplateUtils.processTemplateIntoString(freemarkerConfiguration.
+                                getTemplate("invest/投资比例邮件正文模板.md")
+                        , investmentStrategy
+                );
+            } catch (IOException | TemplateException e) {
+                throw new RuntimeException(e);
+            }
             LocalDate localDate = LocalDate.now();
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             try {
