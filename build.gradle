@@ -50,6 +50,7 @@ subprojects {
     // Spring Cloud 版本统一（可选）
     dependencyManagement {
         imports {
+            mavenBom "org.commonmark:commonmark-parent:0.27.1"
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:2025.0.1"
         }
     }
