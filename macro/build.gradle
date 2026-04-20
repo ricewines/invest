@@ -1,14 +1,22 @@
 dependencies {
     // 自身业务特有依赖（如用户模块的持久层、服务层依赖）
-    implementation 'ai.z.openapi:zai-sdk:0.3.3'
+    implementation 'ai.z.openapi:zai-sdk:0.3.4'
     implementation("cn.hutool:hutool-all:5.8.44")
     implementation "org.commonmark:commonmark-ext-gfm-strikethrough"
     implementation "org.commonmark:commonmark-ext-gfm-tables"
     implementation "org.commonmark:commonmark"
-    implementation("org.jsoup:jsoup:1.22.1")
+    implementation("org.jsoup:jsoup:1.22.2")
     implementation("org.slf4j:slf4j-api")
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation("org.springframework.boot:spring-boot-starter-freemarker")
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+// 强制所有 Jackson 使用 2.19.4
+configurations.configureEach {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        if (details.requested.group == 'com.fasterxml.jackson.core') {
+            details.useVersion '2.19.4'
+        }
+    }
 }

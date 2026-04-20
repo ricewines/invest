@@ -5,7 +5,7 @@
 ### Maco OS预先配置
 
 ```shell
-INVEST_VERSION="0.1.5"
+INVEST_VERSION="0.1.6"
 JAVA_HOME="~/Library/Java/JavaVirtualMachines/openjdk-25/Contents/Home"
 $INVEST_VERSION
 $JAVA_HOME
@@ -14,7 +14,7 @@ $JAVA_HOME
 ### Windows 11预先配置
 
 ```shell
-$$Env:INVEST_VERSION = "0.1.5"
+$$Env:INVEST_VERSION = "0.1.6"
 $$Env:INVEST_VERSION
 $$Env:JAVA_HOME = "C:\Users\PC\.jdks\openjdk-25.0.2"
 $$Env:JAVA_HOME
@@ -31,7 +31,7 @@ git add .
 ```
 
 ```shell
-git commit -m "邮件正文改精美 #6"
+git commit -m "增加手工调用 #7"
 ```
 
 ```shell

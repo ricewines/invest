@@ -13,14 +13,14 @@ buildscript {
     }
     // 声明插件的Maven坐标（group:name:version）
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:3.5.12"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:3.5.13"
     }
 }
 
 // ########## 全局公共配置 ##########
 allprojects {
     group = 'io.github.ricewines'
-    version = '0.1.5'
+    version = '0.1.6'
     repositories {
         maven { url = 'https://maven.aliyun.com/repository/public/' }
         mavenLocal()
@@ -50,8 +50,8 @@ subprojects {
     // Spring Cloud 版本统一（可选）
     dependencyManagement {
         imports {
-            mavenBom "org.commonmark:commonmark-parent:0.27.1"
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:2025.0.1"
+            mavenBom "org.commonmark:commonmark-parent:0.28.0"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:2025.0.2"
         }
     }
     // 核心配置：启用JUnit 5平台，让Gradle识别JUnit 5的@Test注解

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 import io.github.ricewines.sys.config.InvestConfig;
+import io.github.ricewines.sys.controller.InvestRatioController;
 import io.github.ricewines.sys.model.InvestmentStrategy;
 import io.github.ricewines.sys.service.InvestRatioService;
 import jakarta.mail.MessagingException;
@@ -25,6 +26,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,8 +40,9 @@ import java.util.concurrent.TimeUnit;
 /// 投资比例
 @Slf4j
 @Service
+@RestController
 @AllArgsConstructor
-public class InvestRatioServiceImpl implements InvestRatioService {
+public class InvestRatioServiceImpl implements InvestRatioService, InvestRatioController {
 
     /// 应用上下文
     private ApplicationContext applicationContext;
