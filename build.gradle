@@ -11,16 +11,11 @@ buildscript {
         gradlePluginPortal()
         mavenCentral()
     }
-    // 声明插件的Maven坐标（group:name:version）
-    dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:3.5.13"
-    }
 }
-
 // ########## 全局公共配置 ##########
 allprojects {
     group = 'io.github.ricewines'
-    version = '0.1.6'
+    version = '0.1.7'
     repositories {
         maven { url = 'https://maven.aliyun.com/repository/public/' }
         mavenLocal()
@@ -31,13 +26,26 @@ allprojects {
 subprojects {
     // 应用核心插件+Spring Boot插件（无语法冲突）
     apply plugin: 'java'
+    apply plugin: "java-library"  // ✅ 关键：确保每个子项目能生成 JAR
     apply plugin: 'maven-publish'
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
+    compileJava {
+        options.encoding = 'UTF-8'
+    }
+
+    compileTestJava {
+        options.encoding = 'UTF-8'
+    }
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(25) // 所有子模块统一使用 Java 25
         }
+
+        withSourcesJar()
+        withJavadocJar()
+    }
+    javadoc {
+
+        options.addBooleanOption('Xdoclint:none', true)
     }
 
     // 全局版本常量+公共依赖（与之前一致）
@@ -47,15 +55,26 @@ subprojects {
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
-    // Spring Cloud 版本统一（可选）
-    dependencyManagement {
-        imports {
-            mavenBom "org.commonmark:commonmark-parent:0.28.0"
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:2025.0.2"
-        }
-    }
+
     // 核心配置：启用JUnit 5平台，让Gradle识别JUnit 5的@Test注解
     tasks.test {
         useJUnitPlatform() // 必须添加，否则Gradle无法扫描JUnit 5测试用例
+    }
+    publishing {
+        repositories {
+            maven {
+                name = "GitHub"
+                url = uri("https://maven.pkg.github.com/ricewines/invest") // ✅ 替换为你的仓库
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("GPR_USER")
+                    password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                }
+            }
+        }
+        publications {
+            gpr(MavenPublication) {
+                from components.java
+            }
+        }
     }
 }

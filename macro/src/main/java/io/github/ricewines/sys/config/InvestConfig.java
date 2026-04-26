@@ -12,6 +12,11 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 @AutoConfiguration
 @ConfigurationProperties("invest")
 public class InvestConfig {
+    /// 构造方法
+    public InvestConfig() {
+
+    }
+
     /// 智谱AI
     @NestedConfigurationProperty
     private ZhiPuAi zhiPuAi = new ZhiPuAi();
