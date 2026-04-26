@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("api/account")
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountService accountService;
 
-    @PostMapping("/create")
+    @PostMapping("create")
     public Account create(@RequestBody Account account) {
         return accountService.createAccount(account);
     }
 
-    @GetMapping("/accounts")
+    @GetMapping("accounts")
     public List<Account> list() {
         return accountService.getAll();
     }

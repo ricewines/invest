@@ -2,10 +2,12 @@ package com.example.demo.demo.account.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Entity
 @Data
 @Table(name = "accounts")
+@Accessors(chain = true)
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

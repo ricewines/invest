@@ -8,20 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/voucher")
+@RequestMapping("api/voucher")
 @RequiredArgsConstructor
 public class VoucherController {
 
     private final VoucherService voucherService;
-    @PostMapping("/create")
+    @PostMapping("create")
     public Map<String, String> create(@RequestBody Voucher voucher) {
         Voucher saved = voucherService.createVoucher(voucher);
         return Map.of("id", saved.getId().toString(), "voucherNo", saved.getVoucherNo());
     }
-/*    @GetMapping("/balance-sheet")
-    public BalanceSheetDTO balanceSheet(
-            @RequestParam String startDate,
-            @RequestParam String endDate) {
-        return reportService.getBalanceSheet(startDate, endDate);
-    }*/
 }

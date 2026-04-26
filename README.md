@@ -5,19 +5,25 @@
 ### Maco OS预先配置
 
 ```shell
-INVEST_VERSION="0.1.6"
+export INVEST_VERSION=$(cat version.txt | tr -d '\n' | tr -d ' ')
 JAVA_HOME="~/Library/Java/JavaVirtualMachines/openjdk-25/Contents/Home"
-$INVEST_VERSION
-$JAVA_HOME
+```
+
+```shell
+echo $INVEST_VERSION
+echo $JAVA_HOME
 ```
 
 ### Windows 11预先配置
 
 ```shell
-$$Env:INVEST_VERSION = "0.1.6"
-$$Env:INVEST_VERSION
+$$Env:INVEST_VERSION = (Get-Content "./version.txt" -Raw).Trim()
 $$Env:JAVA_HOME = "C:\Users\PC\.jdks\openjdk-25.0.2"
-$$Env:JAVA_HOME
+```
+
+```shell
+echo "已设置版本：$Env:INVEST_VERSION"
+echo "已设置JAVA_HOME：$Env:JAVA_HOME"
 ```
 
 ### 开始新的开发
@@ -31,7 +37,7 @@ git add .
 ```
 
 ```shell
-git commit -m "增加手工调用 #7"
+git commit -m "增加会计记账工具 #8"
 ```
 
 ```shell
@@ -44,4 +50,13 @@ git push origin v$Env:INVEST_VERSION
 
 ```shell
 git push origin dev_chixh
+```
+
+```shell
+./gradlew publishAllPublicationsToGitHubRepository
+```
+
+```shell
+$$env:GPR_USER = "poolsnowhui"
+$$env:GPR_USER
 ```

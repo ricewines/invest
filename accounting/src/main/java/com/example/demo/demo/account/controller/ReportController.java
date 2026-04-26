@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("api")
 @RequiredArgsConstructor
 public class ReportController {
 
     private final ReportService reportService;
 
-    @GetMapping("/balance-sheet")
+    @GetMapping("balance-sheet")
     public BalanceSheetDTO balanceSheet(
             @RequestParam String startDate,
             @RequestParam String endDate) {

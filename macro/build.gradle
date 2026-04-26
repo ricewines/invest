@@ -1,3 +1,7 @@
+plugins {
+    id 'org.springframework.boot' version '3.5.14'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
 dependencies {
     // 自身业务特有依赖（如用户模块的持久层、服务层依赖）
     implementation 'ai.z.openapi:zai-sdk:0.3.4'
@@ -11,6 +15,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-freemarker")
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+// SB3 对应的 Spring Cloud
+dependencyManagement {
+    imports {
+        mavenBom "org.commonmark:commonmark-parent:0.28.0"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2025.0.2"
+    }
 }
 // 强制所有 Jackson 使用 2.19.4
 configurations.configureEach {

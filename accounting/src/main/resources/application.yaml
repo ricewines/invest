@@ -1,6 +1,6 @@
 spring:
   application:
-    name: demo-accountings
+    name: accountings
   datasource:
     url: jdbc:h2:~/invest/ifrs_accounting;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
@@ -17,5 +17,21 @@ spring:
       hibernate:
         format_sql: true
     database-platform: org.hibernate.dialect.H2Dialect
+  profiles:
+    active: chixuehui
+---
 server:
-  port: 8080
+  port: 5001
+spring:
+  config:
+    activate:
+      on-profile: chixuehui
+    import:
+      - file:${user.home}/IdeaProjects/ricewines/local-config/common-chixuehui.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: chixuehuidocker
+    import:
+      - file:/app/ricewines-deploy/chixuehuidocker/common-chixuehuidocker.yml
