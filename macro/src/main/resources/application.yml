@@ -21,4 +21,4 @@ spring:
     activate:
       on-profile: chixuehuidocker
     import:
-      - file:/app/ricewines-deploy/common-chixuehuidocker.yml
+      - file:/app/ricewines-deploy/chixuehuidocker/common-chixuehuidocker.yml

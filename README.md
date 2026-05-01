@@ -37,7 +37,7 @@ git add .
 ```
 
 ```shell
-git commit -m "增加会计记账工具 #8"
+git commit -m "配置修复 #8"
 ```
 
 ```shell
