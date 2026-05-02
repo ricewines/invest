@@ -29,7 +29,7 @@ echo "已设置JAVA_HOME：$Env:JAVA_HOME"
 ### 开始新的开发
 
 ```shell
-./gradlew clean
+./gradlew clean build
 ```
 
 ```shell
@@ -37,7 +37,7 @@ git add .
 ```
 
 ```shell
-git commit -m "#11 发布到中央仓库"
+git commit -m "#12 第二次调整发布到中央仓库"
 ```
 
 ```shell
