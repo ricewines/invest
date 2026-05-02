@@ -15,7 +15,7 @@ buildscript {
 // ########## 全局公共配置 ##########
 allprojects {
     group = 'io.github.ricewines'
-    version = '0.1.9'
+    version = '0.1.11'
     repositories {
         maven { url = 'https://maven.aliyun.com/repository/public/' }
         mavenLocal()
@@ -54,27 +54,8 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
-
-
     // 核心配置：启用JUnit 5平台，让Gradle识别JUnit 5的@Test注解
     tasks.test {
         useJUnitPlatform() // 必须添加，否则Gradle无法扫描JUnit 5测试用例
-    }
-    publishing {
-        repositories {
-            maven {
-                name = "GitHub"
-                url = uri("https://maven.pkg.github.com/ricewines/invest") // ✅ 替换为你的仓库
-                credentials {
-                    username = project.findProperty("gpr.user") ?: System.getenv("GPR_USER")
-                    password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-                }
-            }
-        }
-        publications {
-            gpr(MavenPublication) {
-                from components.java
-            }
-        }
     }
 }

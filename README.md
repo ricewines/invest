@@ -37,7 +37,7 @@ git add .
 ```
 
 ```shell
-git commit -m "#9 整理配置"
+git commit -m "#11 发布到中央仓库"
 ```
 
 ```shell
