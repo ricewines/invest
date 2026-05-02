@@ -12,13 +12,14 @@ buildscript {
 // 根项目不需要 java 插件
 plugins {
     id 'maven-publish'
+    id 'org.jreleaser' version '1.24.0'
     id 'signing'
 }
 
 // ########## 全局公共配置 ##########
 allprojects {
     group = 'io.github.ricewines'
-    version = '0.1.13'
+    version = '0.1.14'
 
     repositories {
         maven { url = 'https://maven.aliyun.com/repository/public/' }
@@ -64,41 +65,23 @@ subprojects {
     tasks.test {
         useJUnitPlatform()
     }
-
-    // --------------------------
-    // 发布配置（只在子项目）
-    // --------------------------
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                from components.java
+    jreleaser {
+        signing {
+            pgp {
+                active = 'ALWAYS'
+                armored = true
             }
         }
-
-        repositories {
+        deploy {
             maven {
-                url = "https://central.sonatype.com/api/v1/publisher/upload"
-                credentials {
-                    username = System.getenv("NEXUS_USERNAME")
-                    password = System.getenv("NEXUS_PASSWORD")
+                mavenCentral {
+                    sonatype {
+                        active = 'RELEASE'
+                        url = 'https://central.sonatype.com/api/v1/publisher'
+                        stagingRepository('target/staging-deploy')
+                    }
                 }
             }
         }
-    }
-
-    // --------------------------
-    // GPG 签名（只在子项目）
-    // --------------------------
-    signing {
-        required = gradle.taskGraph.hasTask("publish")
-
-        def gpgPrivateKey = System.getenv("GPG_PRIVATE_KEY")
-        def gpgPassphrase = System.getenv("GPG_PASSPHRASE")
-
-        if (gpgPrivateKey) {
-            useInMemoryPgpKeys(gpgPrivateKey, gpgPassphrase)
-        }
-
-        sign publishing.publications.mavenJava
     }
 }

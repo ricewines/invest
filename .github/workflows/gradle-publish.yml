@@ -27,13 +27,10 @@ jobs:
           distribution: oracle
           # ID of the distributionManagement repository in the pom.xml file. Default is `github`
           server-id: central
-          # Environment variable name for the username for authentication to the Apache Maven repository. Default is $GITHUB_ACTOR
-          # Name of the build platform to cache dependencies. It can be "maven", "gradle" or "sbt".
-          cache: gradle
       - name: Publish Central
         run: gradle clean publish
         env:
-          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          JRELEASER_MAVENCENTRAL_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          JRELEASER_MAVENCENTRAL_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+          JRELEASER_GPG_SECRET_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          JRELEASER_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
