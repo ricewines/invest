@@ -1,33 +1,39 @@
 // 根项目 build.gradle（Groovy DSL）
-// ########## 核心1：buildscript 声明插件依赖（Gradle构建自身的依赖）##########
 buildscript {
-    // 插件仓库（必须配置，拉取Spring Boot插件）
     repositories {
         mavenLocal()
-        // 第一步：优先从阿里云镜像拉取（速度快）
         maven { url = 'https://maven.aliyun.com/repository/public/' }
         maven { url = 'https://maven.aliyun.com/repository/gradle-plugin' }
-        // 第二步：镜像未找到时，官方仓库兜底（可选）
         gradlePluginPortal()
         mavenCentral()
     }
 }
+
+// 根项目不需要 java 插件
+plugins {
+    id 'maven-publish'
+    id 'signing'
+}
+
 // ########## 全局公共配置 ##########
 allprojects {
     group = 'io.github.ricewines'
     version = '0.1.11'
+
     repositories {
         maven { url = 'https://maven.aliyun.com/repository/public/' }
         mavenLocal()
         mavenCentral()
     }
 }
-// ########## 核心2：subprojects 中统一应用插件（无id()方法，用apply plugin）##########
+
+// ########## 只给子项目配置发布、签名、Java ##########
 subprojects {
-    // 应用核心插件+Spring Boot插件（无语法冲突）
     apply plugin: 'java'
-    apply plugin: "java-library"  // ✅ 关键：确保每个子项目能生成 JAR
+    apply plugin: 'java-library'
     apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
     compileJava {
         options.encoding = 'UTF-8'
     }
@@ -35,27 +41,64 @@ subprojects {
     compileTestJava {
         options.encoding = 'UTF-8'
     }
+
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(25) // 所有子模块统一使用 Java 25
+            languageVersion = JavaLanguageVersion.of(25)
         }
 
         withSourcesJar()
         withJavadocJar()
     }
-    javadoc {
 
+    javadoc {
         options.addBooleanOption('Xdoclint:none', true)
     }
 
-    // 全局版本常量+公共依赖（与之前一致）
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-freemarker")
         annotationProcessor 'org.projectlombok:lombok'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
-    // 核心配置：启用JUnit 5平台，让Gradle识别JUnit 5的@Test注解
+
     tasks.test {
-        useJUnitPlatform() // 必须添加，否则Gradle无法扫描JUnit 5测试用例
+        useJUnitPlatform()
+    }
+
+    // --------------------------
+    // 发布配置（只在子项目）
+    // --------------------------
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+
+        repositories {
+            maven {
+                url = "https://central.sonatype.com/api/v1/publisher/upload"
+                credentials {
+                    username = project.findProperty("NEXUS_USERNAME")
+                    password = project.findProperty("NEXUS_PASSWORD")
+                }
+            }
+        }
+    }
+
+    // --------------------------
+    // GPG 签名（只在子项目）
+    // --------------------------
+    signing {
+        required =  gradle.taskGraph.hasTask("publish")
+
+        def gpgPrivateKey = System.getenv("GPG_PRIVATE_KEY")
+        def gpgPassphrase = System.getenv("GPG_PASSPHRASE")
+
+        if (gpgPrivateKey) {
+            useInMemoryPgpKeys(gpgPrivateKey, gpgPassphrase)
+        }
+
+        sign publishing.publications.mavenJava
     }
 }

@@ -9,21 +9,16 @@ name: Gradle Package
 
 on:
   release:
-    types: [created]
-  workflow_dispatch: 
+    types: [ created ]
+  workflow_dispatch:
 
 jobs:
   deploy_job:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v6
-      - id: install-secret-key
-        name: Install gpg secret key
-        run: |
-          cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import
-          gpg --list-secret-keys --keyid-format LONG
-      - name: Setup Java JDK
+      - name: Setup Java
         uses: actions/setup-java@v5
         with:
           # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file
@@ -33,17 +28,12 @@ jobs:
           # ID of the distributionManagement repository in the pom.xml file. Default is `github`
           server-id: central
           # Environment variable name for the username for authentication to the Apache Maven repository. Default is $GITHUB_ACTOR
-          server-username: SERVER_USERNAME
-          # Environment variable name for password or token for authentication to the Apache Maven repository. Default is $GITHUB_TOKEN
-          server-password: SERVER_PASSWORD
-          # GPG private key to import. Default is empty string.
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          # Environment variable name for the GPG private key passphrase. Default is $GPG_PASSPHRASE.
-          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
           # Name of the build platform to cache dependencies. It can be "maven", "gradle" or "sbt".
           cache: gradle
-      - name: Publish to Apache Maven Central
+      - name: Publish Central
         run: gradle clean publish
         env:
-          SERVER_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-          SERVER_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
