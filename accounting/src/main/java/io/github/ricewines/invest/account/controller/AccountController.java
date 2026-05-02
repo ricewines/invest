@@ -1,7 +1,7 @@
-package com.example.demo.demo.account.controller;
+package io.github.ricewines.invest.account.controller;
 
-import com.example.demo.demo.account.model.Account;
-import com.example.demo.demo.account.service.impl.AccountService;
+import io.github.ricewines.invest.account.model.Account;
+import io.github.ricewines.invest.account.service.impl.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

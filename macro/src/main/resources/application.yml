@@ -1,6 +1,9 @@
 invest:
   zhi-pu-ai:
     model: glm-4.7-flash
+server:
+  servlet:
+    context-path: /invest/macro
 spring:
   mail:
     host: smtp.163.com
@@ -8,7 +11,7 @@ spring:
     active: chixuehui
 ---
 server:
-  port: 5002
+  port: 6012
 spring:
   config:
     activate:
@@ -21,4 +24,4 @@ spring:
     activate:
       on-profile: chixuehuidocker
     import:
-      - file:/app/ricewines-deploy/chixuehuidocker/common-chixuehuidocker.yml
+      - file:/deploy/chixuehuidocker/common-chixuehuidocker.yml

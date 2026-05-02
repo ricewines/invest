@@ -1,7 +1,7 @@
-package com.example.demo.demo.account.service.impl;
+package io.github.ricewines.invest.account.service.impl;
 
-import com.example.demo.demo.account.model.Account;
-import com.example.demo.demo.account.repository.AccountRepository;
+import io.github.ricewines.invest.account.model.Account;
+import io.github.ricewines.invest.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;

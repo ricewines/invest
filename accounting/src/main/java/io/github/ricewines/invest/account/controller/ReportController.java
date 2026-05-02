@@ -1,7 +1,7 @@
-package com.example.demo.demo.account.controller;
+package io.github.ricewines.invest.account.controller;
 
-import com.example.demo.demo.account.model.BalanceSheetDTO;
-import com.example.demo.demo.account.service.ReportService;
+import io.github.ricewines.invest.account.model.BalanceSheetDTO;
+import io.github.ricewines.invest.account.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,6 @@
-package com.example.demo.demo.account.repository;
+package io.github.ricewines.invest.account.repository;
 
-import com.example.demo.demo.account.model.VoucherEntry;
+import io.github.ricewines.invest.account.model.VoucherEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDate;
 import java.util.List;

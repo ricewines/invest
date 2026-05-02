@@ -1,3 +1,6 @@
+server:
+  servlet:
+    context-path: /invest/accounting
 spring:
   application:
     name: accountings
@@ -21,7 +24,7 @@ spring:
     active: chixuehui
 ---
 server:
-  port: 5001
+  port: 6011
 spring:
   config:
     activate:
@@ -34,4 +37,4 @@ spring:
     activate:
       on-profile: chixuehuidocker
     import:
-      - file:/app/ricewines-deploy/chixuehuidocker/common-chixuehuidocker.yml
+      - file:/deploy/chixuehuidocker/common-chixuehuidocker.yml

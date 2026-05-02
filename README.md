@@ -37,7 +37,7 @@ git add .
 ```
 
 ```shell
-git commit -m "配置修复 #8"
+git commit -m "#9 整理配置"
 ```
 
 ```shell
@@ -50,13 +50,4 @@ git push origin v$Env:INVEST_VERSION
 
 ```shell
 git push origin dev_chixh
-```
-
-```shell
-./gradlew publishAllPublicationsToGitHubRepository
-```
-
-```shell
-$$env:GPR_USER = "poolsnowhui"
-$$env:GPR_USER
 ```

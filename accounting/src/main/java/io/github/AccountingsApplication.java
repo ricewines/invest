@@ -1,17 +1,17 @@
-package com.example;
+package io.github;
 
-import com.example.demo.demo.account.model.Account;
-import com.example.demo.demo.account.repository.AccountRepository;
+import io.github.ricewines.invest.account.model.Account;
+import io.github.ricewines.invest.account.repository.AccountRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class DemoAccountingsApplication {
+public class AccountingsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoAccountingsApplication.class, args);
+        SpringApplication.run(AccountingsApplication.class, args);
     }
 
     @Bean

@@ -1,7 +1,7 @@
-package com.example.demo.demo.account.controller;
+package io.github.ricewines.invest.account.controller;
 
-import com.example.demo.demo.account.model.Voucher;
-import com.example.demo.demo.account.service.impl.VoucherService;
+import io.github.ricewines.invest.account.model.Voucher;
+import io.github.ricewines.invest.account.service.impl.VoucherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

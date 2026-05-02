@@ -1,4 +1,4 @@
-package com.example.demo.demo.account.model;
+package io.github.ricewines.invest.account.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

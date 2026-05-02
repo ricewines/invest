@@ -1,11 +1,11 @@
-package com.example.demo.demo.account.service.impl;
+package io.github.ricewines.invest.account.service.impl;
 
-import com.example.demo.demo.account.model.BalanceSheetDTO;
-import com.example.demo.demo.account.model.Account;
-import com.example.demo.demo.account.model.VoucherEntry;
-import com.example.demo.demo.account.repository.AccountRepository;
-import com.example.demo.demo.account.repository.VoucherEntryRepository;
-import com.example.demo.demo.account.service.ReportService;
+import io.github.ricewines.invest.account.model.BalanceSheetDTO;
+import io.github.ricewines.invest.account.model.Account;
+import io.github.ricewines.invest.account.model.VoucherEntry;
+import io.github.ricewines.invest.account.repository.AccountRepository;
+import io.github.ricewines.invest.account.repository.VoucherEntryRepository;
+import io.github.ricewines.invest.account.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
