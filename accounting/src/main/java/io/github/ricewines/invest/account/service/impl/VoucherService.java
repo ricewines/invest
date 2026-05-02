@@ -1,8 +1,8 @@
-package com.example.demo.demo.account.service.impl;
+package io.github.ricewines.invest.account.service.impl;
 
-import com.example.demo.demo.account.model.Voucher;
-import com.example.demo.demo.account.model.VoucherEntry;
-import com.example.demo.demo.account.repository.VoucherRepository;
+import io.github.ricewines.invest.account.model.Voucher;
+import io.github.ricewines.invest.account.model.VoucherEntry;
+import io.github.ricewines.invest.account.repository.VoucherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
