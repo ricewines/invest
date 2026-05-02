@@ -37,7 +37,7 @@ git add .
 ```
 
 ```shell
-git commit -m "#13 第三次调整发布到中央仓库"
+git commit -m "#14 第四次调整发布到中央仓库"
 ```
 
 ```shell
