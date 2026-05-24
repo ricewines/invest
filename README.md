@@ -17,8 +17,12 @@ echo $JAVA_HOME
 ### Windows 11预先配置
 
 ```shell
+cd ~/IdeaProjects/ricewines/invest/
+```
+
+```shell
 $$Env:INVEST_VERSION = (Get-Content "./version.txt" -Raw).Trim()
-$$Env:JAVA_HOME = "C:\Users\PC\.jdks\openjdk-25.0.2"
+$$Env:JAVA_HOME = "C:\Users\PC\.jdks\openjdk-26.0.1"
 ```
 
 ```shell
@@ -37,7 +41,7 @@ git add .
 ```
 
 ```shell
-git commit -m "#14 第四次调整发布到中央仓库"
+git commit -m "#15 升级版本"
 ```
 
 ```shell

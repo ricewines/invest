@@ -19,7 +19,7 @@ plugins {
 // ########## 全局公共配置 ##########
 allprojects {
     group = 'io.github.ricewines'
-    version = '0.1.14'
+    version = '0.1.15'
 
     repositories {
         maven { url = 'https://maven.aliyun.com/repository/public/' }
