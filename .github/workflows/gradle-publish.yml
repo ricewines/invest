@@ -27,10 +27,24 @@ jobs:
           distribution: oracle
           # ID of the distributionManagement repository in the pom.xml file. Default is `github`
           server-id: central
-      - name: Publish Central
-        run: gradle clean publish
-        env:
-          JRELEASER_MAVENCENTRAL_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-          JRELEASER_MAVENCENTRAL_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-          JRELEASER_GPG_SECRET_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          JRELEASER_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      - name: Publish to Maven Central
+        # You may pin to the exact commit or the version.
+        # uses: openMF/mifos-x-actionhub-publish-library-kmp@eea9453e8528a07eac547bdfed26c6653a912f51
+        uses: openMF/mifos-x-actionhub-publish-library-kmp@v1.0.0
+        with:
+          # Version to publish
+          version: 0.1.16
+          # Maven Central username
+          maven-central-username: ${{ secrets.NEXUS_USERNAME }}
+          # Maven Central password or token
+          maven-central-password: ${{ secrets.NEXUS_PASSWORD }}
+          # GPG signing key ID
+          gpg-key-id: ${{ secrets.GPG_KEY_ID }}
+          # GPG signing key in ASCII-armored format
+          gpg-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          # GPG key passphrase
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          # GitHub token for creating releases and deploying documentation
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Java version to use
+          java-version: 25
