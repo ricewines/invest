@@ -1,20 +1,21 @@
 plugins {
     id 'org.springframework.boot' version '3.5.14'
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 dependencies {
-    // 自身业务特有依赖（如用户模块的持久层、服务层依赖）
     implementation 'ai.z.openapi:zai-sdk:0.3.4'
-    implementation("cn.hutool:hutool-all:5.8.44")
-    implementation "org.commonmark:commonmark-ext-gfm-strikethrough"
-    implementation "org.commonmark:commonmark-ext-gfm-tables"
-    implementation "org.commonmark:commonmark"
-    implementation("org.jsoup:jsoup:1.22.2")
-    implementation("org.slf4j:slf4j-api")
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation("org.springframework.boot:spring-boot-starter-freemarker")
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation "org.commonmark:commonmark"
+    implementation "org.commonmark:commonmark-ext-gfm-strikethrough"
+    implementation "org.commonmark:commonmark-ext-gfm-tables"
+
+    implementation("cn.hutool:hutool-all:5.8.46")
+    implementation("org.jsoup:jsoup:1.22.2")
+    implementation("org.slf4j:slf4j-api")
+    implementation("org.springframework.boot:spring-boot-starter-freemarker")
 }
 // SB3 对应的 Spring Cloud
 dependencyManagement {
