@@ -3,7 +3,7 @@ invest:
     model: glm-4.7-flash
 server:
   servlet:
-    context-path: /invest/macro
+    context-path: /invest/macro/api
 spring:
   mail:
     host: smtp.163.com
