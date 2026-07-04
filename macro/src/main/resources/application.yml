@@ -1,5 +1,6 @@
 invest:
   zhi-pu-ai:
+    api-key: ${ZHI_PU_AI_API_KEY}
     model: glm-4.7-flash
 server:
   servlet:
@@ -7,6 +8,8 @@ server:
 spring:
   mail:
     host: smtp.163.com
+    password: ${QAZCXH_163_COM_MAIL_PASSWORD}
+    username: qazcxh@163.com
   profiles:
     active: chixuehui
 ---
