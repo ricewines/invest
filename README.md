@@ -24,7 +24,7 @@ $ cd ~/IdeaProjects/ricewines/invest/ ; $env:JAVA_HOME = "C:\Users\chixu\.jdks\o
 ```
 
 ```shell
-git add . ; git commit -m "#18 重新编写部署脚本，升级依赖包" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION"
+git add . ; git commit -m "#19 重新编写部署脚本，升级依赖包" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION"
 ```
 
 ```shell
