@@ -21,6 +21,7 @@ import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -35,6 +36,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /// 投资比例
@@ -46,6 +48,8 @@ public class InvestRatioServiceImpl implements InvestRatioService, InvestRatioCo
 
     /// 应用上下文
     private ApplicationContext applicationContext;
+    /// 环境
+    private Environment environment;
     /// 邮件发送者
     private JavaMailSender javaMailSender;
     /// 投资配置
@@ -87,7 +91,8 @@ public class InvestRatioServiceImpl implements InvestRatioService, InvestRatioCo
                 MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
                 MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-                mimeMessageHelper.setFrom("qazcxh@163.com"); // 发件人邮箱地址，需要与配置文件中的一致或使用其他合法邮箱地址。
+                mimeMessageHelper.setFrom(Objects.requireNonNull(environment
+                        .getProperty("spring.mail.username")));
                 mimeMessageHelper.setTo(investConfig.getMailConfig().getTo()); // 收件人邮箱地址。可以多个收件人，用逗号隔开。如："aaa@bbb.com, ccc@ddd.com"
                 mimeMessageHelper.setSubject(subject); // 邮件主题（标题） 与htmlContent配合来展示。
                 mimeMessageHelper.setText(htmlContent, true); // true表示html格式邮件。第一个参数是邮件正文内容，第二个参数表示是否是html内容。
