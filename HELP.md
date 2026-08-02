@@ -13,9 +13,9 @@ Get-Content D:\Users\CXH\data\secret\.env.secret.txt | ForEach-Object {$l=$_.Tri
 ### 2 校验环境变量是否加载成功
 
 ```shell
-echo "INVEST_VERSION=$env:INVEST_VERSION";
 echo "QAZCXH_163_COM_MAIL_PASSWORD=$env:QAZCXH_163_COM_MAIL_PASSWORD";
 echo "ZHI_PU_AI_API_KEY=$env:ZHI_PU_AI_API_KEY";
+echo "INVEST_VERSION=$env:INVEST_VERSION";
 ```
 
 ### 3 切换项目目录 + 指定JDK
@@ -43,7 +43,7 @@ cd ~/IdeaProjects/ricewines/invest/ ; $env:JAVA_HOME = "C:\Users\chixu\.jdks\ope
 ### 5 Git 提交、打标签、推送发布流程
 
 ```shell
-git add . ; git commit -m "#24 GPG公钥同步到了公钥服务器" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;
+git add . ; git commit -m "#25 整理配置重新推送" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;
 # 推送版本标签与开发分支
 git push origin v$env:INVEST_VERSION ; git push origin dev_chixh ;
 ```
