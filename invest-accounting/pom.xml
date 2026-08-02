@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.ricewines</groupId>
         <artifactId>invest-parent</artifactId>
-        <version>0.1.26</version>
+        <version>0.1.27</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>invest-accounting</artifactId>
