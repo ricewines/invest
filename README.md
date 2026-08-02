@@ -23,7 +23,7 @@ $ cd ~/IdeaProjects/ricewines/invest/ ; $env:JAVA_HOME = "C:\Users\chixu\.jdks\o
 ```
 
 ```shell
-git add . ; git commit -m "#20 改maven和重构为jooq" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION"
+git add . ; git commit -m "#21 gpg密钥重置" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION"
 ```
 
 ```shell
