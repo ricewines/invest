@@ -23,6 +23,8 @@ jobs:
           server-password: ${{ secrets.NEXUS_PASSWORD }}
           # GPG private key to import. Default is empty string.
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          # GPG private key to import. Default is empty string.
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
           # Name of the build platform to cache dependencies. It can be "maven", "gradle" or "sbt".
           cache: maven
       - name: Publish to Apache Maven Central
