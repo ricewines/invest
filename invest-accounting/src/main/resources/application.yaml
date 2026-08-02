@@ -1,0 +1,41 @@
+logging:
+  file:
+    name: ${user.home}/invest/logs/${spring.application.name}/${spring.application.name}.log
+  pattern:
+    correlation: "%line "
+server:
+  servlet:
+    context-path: /invest/accounting
+spring:
+  application:
+    name: invest-accounting
+  datasource:
+    url: jdbc:h2:D:\Users\CXH\chixuehui-data\database\invest\invest-accounting;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  flyway:
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations: classpath:db/migration
+  profiles:
+    active:
+---
+server:
+  port: 6011
+spring:
+  config:
+    activate:
+      on-profile: chixuehui
+    import:
+      - file:${user.home}/IdeaProjects/ricewines/local-config/common-chixuehui.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: chixuehuidocker
+    import:
+      - file:/config/common-chixuehuidocker.yml
