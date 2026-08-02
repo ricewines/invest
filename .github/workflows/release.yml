@@ -5,6 +5,8 @@ on:
 jobs:
   deploy_job:
     runs-on: ubuntu-latest
+    env:
+      MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
     steps:
       - name: checkout
         uses: actions/checkout@v7

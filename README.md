@@ -19,7 +19,7 @@ $ cd ~/IdeaProjects/ricewines/invest/ ; $env:JAVA_HOME = "C:\Users\chixu\.jdks\o
 ### 开始新的开发
 
 ```shell
-./mvnw versions:set --define newVersion=$env:INVEST_VERSION
+./mvnw versions:set --define newVersion=$env:INVEST_VERSION -DgenerateBackupPoms=false
 ```
 
 ```shell
@@ -27,7 +27,7 @@ $ cd ~/IdeaProjects/ricewines/invest/ ; $env:JAVA_HOME = "C:\Users\chixu\.jdks\o
 ```
 
 ```shell
-git add . ; git commit -m "#22 gpg密钥增加密码加密，Maven Central 审核会拒绝无签名 / 无密码签名的制品，正式发布必须给密钥设置密码" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION"
+git add . ; git commit -m "#23 gpg密钥增加密码加密，Maven Central 审核会拒绝无签名 / 无密码签名的制品，正式发布必须给密钥设置密码" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION"
 ```
 
 ```shell
