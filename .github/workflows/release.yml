@@ -30,4 +30,4 @@ jobs:
           # Name of the build platform to cache dependencies. It can be "maven", "gradle" or "sbt".
           cache: maven
       - name: Publish to Apache Maven Central
-        run: mvn clean deploy -Dspring-boot.skip=true
+        run: mvn clean deploy -Dspring-boot.repackage.skip=true
