@@ -43,7 +43,7 @@ cd ~/IdeaProjects/ricewines/invest/ ; $env:JAVA_HOME = "C:\Users\chixu\.jdks\ope
 ### 5 Git 提交、打标签、推送发布流程
 
 ```shell
-git add . ; git commit -m "#25 整理配置重新推送" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;
+git add . ; git commit -m "#26 修改查看资产负债的情况" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;
 # 推送版本标签与开发分支
 git push origin v$env:INVEST_VERSION ; git push origin dev_chixh ;
 ```
