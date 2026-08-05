@@ -13,7 +13,7 @@
     <artifactId>invest-parent</artifactId>
     <name>invest-parent</name>
     <packaging>pom</packaging>
-    <version>0.1.28</version>
+    <version>0.1.29</version>
     <properties>
         <bc.version>1.85</bc.version>
         <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
@@ -155,6 +155,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <additionalOptions>
                         <additionalOption>-Xdoclint:none</additionalOption>
@@ -185,6 +193,19 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>${maven-site-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

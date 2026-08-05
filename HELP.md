@@ -44,3 +44,15 @@ git add . ; git commit -m "#升级包依赖" ; git tag -a v$env:INVEST_VERSION -
 # 推送版本标签与开发分支
 git push origin v$env:INVEST_VERSION ; git push origin dev_chixh ;
 ```
+
+```shell
+# 生成站点文档
+./mvnw site:site ;
+# 本地预览站点
+./mvnw site:stage ;
+```
+
+```shell
+# 推送文档至代码仓库
+./mvnw scm-publish:publish-scm ;
+```
