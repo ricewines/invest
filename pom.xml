@@ -13,7 +13,7 @@
     <artifactId>invest-parent</artifactId>
     <name>invest-parent</name>
     <packaging>pom</packaging>
-    <version>0.1.27</version>
+    <version>0.1.28</version>
     <properties>
         <bc.version>1.85</bc.version>
         <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
@@ -21,8 +21,7 @@
         <hutool-all.version>5.8.47</hutool-all.version>
         <invest.version>${project.version}</invest.version>
         <java.version>25</java.version>
-        <jooq.version>3.21.6</jooq.version>
-        <jsoup.version>1.22.2</jsoup.version>
+        <jsoup.version>1.23.1</jsoup.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <mapstruct.version>1.6.3</mapstruct.version>
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
@@ -36,21 +35,12 @@
         <maven-surefire-report-plugin.version>3.5.6</maven-surefire-report-plugin.version>
         <minio.version>9.0.3</minio.version>
         <mybatis-plus.version>3.5.17</mybatis-plus.version>
-        <spring-ai.version>2.0.0</spring-ai.version>
         <spring-cloud.version>2025.1.2</spring-cloud.version>
-        <springdoc-openapi.version>3.0.3</springdoc-openapi.version>
+        <springdoc-openapi.version>3.1.0</springdoc-openapi.version>
         <therapi-runtime-javadoc.version>0.15.0</therapi-runtime-javadoc.version>
         <zai-sdk.version>0.3.5</zai-sdk.version>
         <zxing.version>3.5.4</zxing.version>
     </properties>
-    <dependencies>
-        <!--单元测试 mock工具-->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -122,14 +112,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--spring ai-->
-            <dependency>
-                <groupId>org.springframework.ai</groupId>
-                <artifactId>spring-ai-bom</artifactId>
-                <version>${spring-ai.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
             <!--springdoc api-->
             <dependency>
                 <groupId>org.springdoc</groupId>
@@ -157,11 +139,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>${maven-deploy-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>${maven-gpg-plugin.version}</version>
                 <executions>
@@ -176,21 +153,8 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>${maven-install-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
                     <additionalOptions>
                         <additionalOption>-Xdoclint:none</additionalOption>
@@ -221,19 +185,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>${maven-site-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>${maven-source-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
