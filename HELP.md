@@ -40,7 +40,7 @@ cd ~/IdeaProjects/ricewines/invest/;
 ### 5 Git 提交、打标签、推送发布流程
 
 ```shell
-git add . ; git commit -m "#27 修改github工作流" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;
+git add . ; git commit -m "#升级包依赖" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;
 # 推送版本标签与开发分支
 git push origin v$env:INVEST_VERSION ; git push origin dev_chixh ;
 ```
