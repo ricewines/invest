@@ -8,10 +8,25 @@ server:
 spring:
   application:
     name: invest-macro
+  datasource:
+    username: sa
+    password:
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   mail:
     host: smtp.163.com
-    password: ${QAZCXH_163_COM_MAIL_PASSWORD}
+    port: 25
     username: qazcxh@163.com
+    password: ${QAZCXH_163_COM_MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
   profiles:
     active: chixuehui
 ---
@@ -23,6 +38,7 @@ spring:
       on-profile: chixuehui
     import:
       - file:${user.home}/IdeaProjects/ricewines/local-config/common-chixuehui.yml
+      - file:${user.home}/IdeaProjects/ricewines/local-config/invest-macro-chixuehui.yml
 ---
 spring:
   config:
@@ -30,3 +46,4 @@ spring:
       on-profile: chixuehuidocker
     import:
       - file:/config/common-chixuehuidocker.yml
+      - file:/config/invest-macro-chixuehuidocker.yml

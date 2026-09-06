@@ -19,4 +19,8 @@ public class InvestConfig {
     @NestedConfigurationProperty
     private MailConfig mailConfig = new MailConfig();
 
+    // 页面相关配置（域名、上下文路径等）
+    @NestedConfigurationProperty
+    private PageConfig pageConfig = new PageConfig();
+
 }
