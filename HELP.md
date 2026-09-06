@@ -2,6 +2,10 @@
 
 ## invest 项目本地操作手册
 
+```shell
+edit D:\Users\CXH\data\secret\.env.secret.txt
+```
+
 ### 1 Windows PowerShell 加载环境变量
 
 读取密钥配置文件，注入进程级环境变量
@@ -11,10 +15,10 @@ Get-Content D:\Users\CXH\data\secret\.env.secret.txt | ForEach-Object {$l=$_.Tri
 echo "QAZCXH_163_COM_MAIL_PASSWORD=$env:QAZCXH_163_COM_MAIL_PASSWORD";
 echo "ZHI_PU_AI_API_KEY=$env:ZHI_PU_AI_API_KEY";
 echo "SPRING_PROFILES_ACTIVE=$env:SPRING_PROFILES_ACTIVE";
-echo "INVEST_VERSION=$env:INVEST_VERSION";
 ; $env:JAVA_HOME = "C:\Users\chixu\.jdks\openjdk-26.0.2" ; echo "已设置JAVA_HOME：$env:JAVA_HOME" ;
 # 校验Java版本
 & "$env:JAVA_HOME\bin\java.exe" -version ;
+echo "INVEST_VERSION=$env:INVEST_VERSION";
 ```
 
 ### 2 切换项目目录
@@ -40,7 +44,10 @@ cd ~/IdeaProjects/ricewines/invest/;
 ### 5 Git 提交、打标签、推送发布流程
 
 ```shell
-git add . ; git commit -m "做邮箱订阅功能 #29" ; git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;
+git add . ; git commit -m "交易所休市安排 #29" ; 
+# 拉取主线代码变基
+git pull origin main --rebase ;
+git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;
 # 推送版本标签与开发分支
 git push origin v$env:INVEST_VERSION ; git push origin dev_chixh ;
 ```
@@ -70,4 +77,8 @@ git checkout main;
 ```shell
 # 推送文档至代码仓库
 ./mvnw scm-publish:publish-scm ;
+```
+
+```shell
+Remove-Item -Recurse -Force target/ ;
 ```
