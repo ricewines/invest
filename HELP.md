@@ -52,6 +52,21 @@ git push origin v$env:INVEST_VERSION ; git push origin dev_chixh ;
 ./mvnw site:stage ;
 ```
 
+### 5.1 初始化时使用
+
+```shell
+# 创建孤立分支，不带任何提交历史
+git checkout --orphan gh-pages;
+# 清空分支下全部文件
+git rm -rf .;
+# 生成初始空提交
+git commit --allow-empty -m "init gh‑pages for maven site";
+# 推送到远程仓库
+git push origin gh-pages;
+# 切回你的主业务分支(main/master)
+git checkout main;
+```
+
 ```shell
 # 推送文档至代码仓库
 ./mvnw scm-publish:publish-scm ;
