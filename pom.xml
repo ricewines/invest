@@ -13,7 +13,7 @@
     <artifactId>invest-parent</artifactId>
     <name>invest-parent</name>
     <packaging>pom</packaging>
-    <version>0.1.34</version>
+    <version>0.1.35</version>
     <properties>
         <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
         <commonmark.version>0.30.0</commonmark.version>
@@ -31,24 +31,18 @@
         <maven-jxr-plugin.version>3.6.0</maven-jxr-plugin.version>
         <maven-scm-publish-plugin.version>3.3.0</maven-scm-publish-plugin.version>
         <maven-site-plugin.version>3.22.0</maven-site-plugin.version>
-        <maven-surefire-report-plugin.version>3.5.6</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>3.6.0</maven-surefire-report-plugin.version>
         <minio.version>9.0.3</minio.version>
         <mybatis-plus.version>3.5.17</mybatis-plus.version>
         <poi.version>5.5.1</poi.version>
         <spring-ai.version>2.0.1</spring-ai.version>
         <spring-cloud.version>2025.1.3</spring-cloud.version>
-        <springdoc-openapi.version>3.1.0</springdoc-openapi.version>
+        <springdoc-openapi.version>3.1.1</springdoc-openapi.version>
         <therapi-runtime-javadoc.version>0.15.0</therapi-runtime-javadoc.version>
-        <zai-sdk.version>0.3.5</zai-sdk.version>
         <zxing.version>3.5.4</zxing.version>
     </properties>
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>ai.z.openapi</groupId>
-                <artifactId>zai-sdk</artifactId>
-                <version>${zai-sdk.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
@@ -96,6 +90,14 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-bom</artifactId>
                 <version>${mybatis-plus.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring ai-->
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -227,6 +229,50 @@
             </plugin>
         </plugins>
     </build>
+    <reporting>
+        <plugins>
+            <!-- 项目基础信息报告 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven-project-info-reports-plugin.version}</version>
+            </plugin>
+            <!-- javadoc报告，会出现在站点Project Reports菜单 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <!-- 关闭javadoc帮助导航页，可选 -->
+                    <!-- 输出public/protected，默认 -->
+                    <!-- 关闭报错：SpringBoot项目很多@Generated注解无javadoc，抑制警告 -->
+                    <additionalJOptions>
+                        <additionalJOption>-Xdoclint:none</additionalJOption>
+                    </additionalJOptions>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <!-- source，会出现在站点Project Reports菜单 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
     <distributionManagement>
         <site>
             <id>github</id>
@@ -237,7 +283,7 @@
         <module>invest-accounting</module>
         <module>invest-macro</module>
     </modules>
-    <url>https://ricewines.github.io/invest-parent/</url>
+    <url>https://ricewines.github.io/invest/</url>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>

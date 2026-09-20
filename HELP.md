@@ -12,7 +12,6 @@ edit D:\Users\CXH\data\secret\.env.secret.txt
 
 ```shell
 Get-Content D:\Users\CXH\data\secret\.env.secret.txt | ForEach-Object {$l=$_.Trim();if($l -and !$l.StartsWith("#")){$i=$l.IndexOf('=');$k=$l.Substring(0,$i).Trim();$v=$l.Substring($i+1).Trim();[Environment]::SetEnvironmentVariable($k,$v,"Process")}} ; 
-echo "QAZCXH_163_COM_MAIL_PASSWORD=$env:QAZCXH_163_COM_MAIL_PASSWORD";
 echo "ZHI_PU_AI_API_KEY=$env:ZHI_PU_AI_API_KEY";
 echo "SPRING_PROFILES_ACTIVE=$env:SPRING_PROFILES_ACTIVE";
 ; $env:JAVA_HOME = "C:\Users\chixu\.jdks\openjdk-26.0.2" ; echo "已设置JAVA_HOME：$env:JAVA_HOME" ;
@@ -44,7 +43,7 @@ cd ~/IdeaProjects/ricewines/invest/;
 ### 5 Git 提交、打标签、推送发布流程
 
 ```shell
-git add . ; git commit -m "交易所休市安排 #29" ; 
+git add . ; git commit -m "增加上交所的ETF列表 #30" ; 
 # 拉取主线代码变基
 git pull origin main --rebase ;
 git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;

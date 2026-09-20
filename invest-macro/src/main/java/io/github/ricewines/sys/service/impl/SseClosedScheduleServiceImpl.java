@@ -1,16 +1,14 @@
 package io.github.ricewines.sys.service.impl;
 
-import ai.z.openapi.ZhipuAiClient;
-import ai.z.openapi.service.model.*;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
-import io.github.ricewines.sys.config.InvestConfig;
 import io.github.ricewines.sys.controller.SseClosedScheduleController;
 import io.github.ricewines.sys.model.HolidayPromptContent;
 import io.github.ricewines.sys.model.MarketHoliday;
 import io.github.ricewines.sys.service.SseClosedScheduleService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +23,7 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /// 上交所休市安排
 @Slf4j
@@ -33,9 +32,11 @@ import java.util.List;
 @AllArgsConstructor
 public class SseClosedScheduleServiceImpl implements SseClosedScheduleService, SseClosedScheduleController {
 
-    private final Configuration freemarkerConfiguration;
-    private final InvestConfig investConfig;
-    private final ObjectMapper objectMapper;
+    /// chat client builder
+    private ChatClient.Builder chatClientBuilder;
+    private Configuration freemarkerConfiguration;
+    private ObjectMapper objectMapper;
+
 
     @Override
     public List<MarketHoliday> fetchClosedSchedule() {
@@ -49,20 +50,18 @@ public class SseClosedScheduleServiceImpl implements SseClosedScheduleService, S
         } catch (IOException | TemplateException e) {
             throw new RuntimeException(e);
         }
-
-        ChatCompletionResponse response = ZhipuAiClient.builder().ofZHIPU().apiKey(investConfig.getZhiPuAi().getApiKey()).build().chat()
-                .createChatCompletion(ChatCompletionCreateParams.builder()
-                        .model(investConfig.getZhiPuAi().getModel())
-                        .messages(List.of(ChatMessage.builder().role(ChatMessageRole.USER.value()).content(prompt).build()))
-                        .thinking(ChatThinking.builder().type("enabled").build())
-                        .build());
-
-        if (!response.isSuccess()) {
-            throw new IllegalStateException("AI 请求失败: " + response);
-        }
-
-        String json = response.getData().getChoices().getFirst().getMessage().getContent() + "";
-        return objectMapper.readValue(json, new TypeReference<>() {});
+        log.info("上交所休市安排获取提示词: {}", prompt);
+        String aiResult = chatClientBuilder
+                .build()
+                .prompt()
+                .user(prompt)
+                .stream()
+                .content().toStream()
+                .collect(Collectors.joining());
+        // 获取回复
+        log.info("AI 回复: {}", aiResult);
+        return objectMapper.readValue(aiResult, new TypeReference<>() {
+        });
     }
 
     private String fetchClosedSchedulePage() {
