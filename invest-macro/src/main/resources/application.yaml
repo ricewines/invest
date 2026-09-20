@@ -1,11 +1,13 @@
-invest:
-  zhi-pu-ai:
-    api-key: ${ZHI_PU_AI_API_KEY}
-    model: glm-4.7-flash
 server:
   servlet:
     context-path: /invest/macro/api
 spring:
+  ai:
+    openai:
+      api-key: ${ARK_AI_API_KEY}
+      base-url: https://ark.cn-beijing.volces.com/api/v3
+      chat:
+        model: deepseek-v4-pro-ga-260813
   application:
     name: invest-macro
   datasource:
@@ -24,6 +26,10 @@ spring:
     password: ${QAZCXH_163_COM_MAIL_PASSWORD}
   profiles:
     active: chixuehui
+  http:
+    serviceclient:
+      sse:
+        base-url: https://query.sse.com.cn
 ---
 server:
   port: 6012
