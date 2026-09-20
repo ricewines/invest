@@ -1,0 +1,6 @@
+io.github
+io.github.ricewines.invest.account.controller
+io.github.ricewines.invest.account.model
+io.github.ricewines.invest.account.repository
+io.github.ricewines.invest.account.service
+io.github.ricewines.invest.account.service.impl
