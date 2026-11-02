@@ -6,18 +6,18 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.1.1</version>
+        <version>4.1.2</version>
         <relativePath/>
     </parent>
     <groupId>io.github.ricewines</groupId>
     <artifactId>invest-parent</artifactId>
     <name>invest-parent</name>
     <packaging>pom</packaging>
-    <version>0.1.35</version>
+    <version>0.1.36</version>
     <properties>
-        <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
-        <commonmark.version>0.30.0</commonmark.version>
-        <hutool-all.version>5.8.47</hutool-all.version>
+        <central-publishing-maven-plugin.version>0.12.0</central-publishing-maven-plugin.version>
+        <commonmark.version>0.32.0</commonmark.version>
+        <hutool-all.version>5.8.48</hutool-all.version>
         <invest.version>${project.version}</invest.version>
         <java.version>25</java.version>
         <jsoup.version>1.23.2</jsoup.version>
@@ -31,14 +31,14 @@
         <maven-jxr-plugin.version>3.6.0</maven-jxr-plugin.version>
         <maven-scm-publish-plugin.version>3.3.0</maven-scm-publish-plugin.version>
         <maven-site-plugin.version>3.22.0</maven-site-plugin.version>
-        <maven-surefire-report-plugin.version>3.6.0</maven-surefire-report-plugin.version>
-        <minio.version>9.0.3</minio.version>
-        <mybatis-plus.version>3.5.17</mybatis-plus.version>
-        <poi.version>5.5.1</poi.version>
-        <spring-ai.version>2.0.1</spring-ai.version>
-        <spring-cloud.version>2025.1.3</spring-cloud.version>
-        <springdoc-openapi.version>3.1.1</springdoc-openapi.version>
-        <therapi-runtime-javadoc.version>0.15.0</therapi-runtime-javadoc.version>
+        <maven-surefire-report-plugin.version>3.6.1</maven-surefire-report-plugin.version>
+        <minio.version>9.0.4</minio.version>
+        <mybatis-plus.version>3.5.18</mybatis-plus.version>
+        <poi.version>6.0.0</poi.version>
+        <spring-ai.version>2.0.2</spring-ai.version>
+        <spring-cloud.version>2025.1.4</spring-cloud.version>
+        <springdoc-openapi.version>3.2.0</springdoc-openapi.version>
+        <therapi-runtime-javadoc.version>0.16.0</therapi-runtime-javadoc.version>
         <zxing.version>3.5.4</zxing.version>
     </properties>
     <dependencyManagement>
