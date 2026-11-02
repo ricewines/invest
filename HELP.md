@@ -37,18 +37,19 @@ cd ~/IdeaProjects/ricewines/invest/;
 #### 4.2 本地编译安装
 
 ```shell
-./mvnw clean install ;
+./mvnw clean install;
 ```
 
 ### 5 Git 提交、打标签、推送发布流程
 
 ```shell
-git add . ; git commit -m "增加上交所的ETF列表 #30" ; 
+git add . ; git commit -m "升级版本 #31" ; 
 # 拉取主线代码变基
 git pull origin main --rebase ;
 git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;
 # 推送版本标签与开发分支
-git push origin v$env:INVEST_VERSION ; git push origin dev_chixh ;
+git push origin v$env:INVEST_VERSION ;
+git push origin dev_chixh ;
 ```
 
 ```shell
