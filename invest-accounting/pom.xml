@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.ricewines</groupId>
         <artifactId>invest-parent</artifactId>
-        <version>0.1.41</version>
+        <version>0.1.42</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>invest-accounting</artifactId>
@@ -103,18 +103,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <image>
-                        <!-- 替换为国内可访问的buildpack builder镜像 -->
-                        <builder>m.daocloud.io/docker.io/paketobuildpacks/builder-noble-java-tiny:latest</builder>
-                        <env>
-                            <!-- 1. 开启 DEBUG 日志，方便排查问题 -->
-                            <BP_LOG_LEVEL>DEBUG</BP_LOG_LEVEL>
-                        </env>
-                        <!-- 替换 run 镜像，解决 ubuntu-noble-run-tiny 拉取失败 -->
-                        <runImage>m.daocloud.io/docker.io/paketobuildpacks/ubuntu-noble-run-tiny:0.0.78</runImage>
-                    </image>
-                </configuration>
             </plugin>
         </plugins>
     </build>
