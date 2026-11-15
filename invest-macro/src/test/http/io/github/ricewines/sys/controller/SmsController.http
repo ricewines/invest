@@ -8,7 +8,16 @@ Host: [::1]:6012
   "receiver": "13800138000",
   "content": "您的验证码：666666"
 }
+### handlePush
+POST /invest/macro/api/sys/sms/handle-push
+Content-Type: application/json
+Host: [::1]:6012
 
+{
+  "sender": "SIM-+8613800138000",
+  "message": "【XX】您的验证码为123456",
+  "timestamp": "2025-03-17 14:30:00"
+}
 ### subscribe
 GET /invest/macro/api/sys/sms/subscribe?clientId=1
 Content-Type: application/json
