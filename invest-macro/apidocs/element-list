@@ -4,5 +4,6 @@ io.github.ricewines.sys.constant
 io.github.ricewines.sys.controller
 io.github.ricewines.sys.job.impl
 io.github.ricewines.sys.model
+io.github.ricewines.sys.po
 io.github.ricewines.sys.service
 io.github.ricewines.sys.service.impl
