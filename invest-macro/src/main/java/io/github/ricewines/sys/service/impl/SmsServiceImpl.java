@@ -3,6 +3,7 @@ package io.github.ricewines.sys.service.impl;
 import io.github.ricewines.sys.controller.SmsController;
 import io.github.ricewines.sys.model.PageResult;
 import io.github.ricewines.sys.model.SmsForwardDTO;
+import io.github.ricewines.sys.model.SmsPushDTO;
 import io.github.ricewines.sys.model.SmsRecordVO;
 import io.github.ricewines.sys.po.SmsRecord;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,43 @@ public class SmsServiceImpl implements SmsController {
     private DSLContext dsl;
 
     private SsePushManager ssePushManager;
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void handlePush(SmsPushDTO dto) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime receiveTime;
+        if (dto.getTimestamp() != null) {
+            receiveTime = dto.getTimestamp();
+        } else {
+            receiveTime = now;
+        }
+
+        SmsRecord smsRecord = new SmsRecord();
+        // sender：原始推送字段 SIM-+8613800138000 直接存入sender
+        smsRecord.setSender(dto.getSender());
+        // 【注意】推送报文里没有 receiver 字段，这里根据你的业务选择：
+        // 方案A：留空（推荐，如果设备推送不带本机号码）
+        smsRecord.setReceiver(null);
+        // 方案B：如果你需要从sender里提取本机SIM号码，可以在这里解析，我后面给解析示例
+        smsRecord.setContent(dto.getMessage());
+        smsRecord.setReceiveTime(receiveTime);
+        smsRecord.setIsRead(0);
+        smsRecord.setCreateTime(now);
+
+        dsl.insertInto(SmsRecord.TABLE)
+                .set(SmsRecord.SENDER, smsRecord.getSender())
+                .set(SmsRecord.RECEIVER, smsRecord.getReceiver())
+                .set(SmsRecord.CONTENT, smsRecord.getContent())
+                .set(SmsRecord.RECEIVE_TIME, smsRecord.getReceiveTime())
+                .set(SmsRecord.IS_READ, smsRecord.getIsRead())
+                .set(SmsRecord.CREATE_TIME, smsRecord.getCreateTime())
+                .execute();
+
+        // 转VO，推送SSE，和你原有forward逻辑保持一致
+        SmsRecordVO vo = toVO(smsRecord);
+        ssePushManager.pushNewSms(vo);
+    }
 
     @Override
     @Transactional

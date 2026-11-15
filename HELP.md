@@ -43,7 +43,7 @@ cd ~/IdeaProjects/ricewines/invest/;
 ### 5 Git 提交、打标签、推送发布流程
 
 ```shell
-git add . ; git commit -m "feat: 短信实时转发和历史查看，closes #41" ; 
+git add . ; git commit -m "feat: 增加与短信宝的匹配接口POST (JSON)，closes #41" ; 
 # 拉取主线代码变基
 git pull origin main --rebase ;
 git tag -a v$env:INVEST_VERSION -m "发布版本$env:INVEST_VERSION" ;
